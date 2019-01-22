@@ -1,0 +1,1 @@
+deployment=`helm list | grep DEPLOYED | awk '{print $1}'` ; for i in 0 1 2; do kubectl exec -it $deployment-solace-$i -- bash -c "tar zcf ~/logs-$i.tar.gz /usr/sw/jail/logs" ; kubectl cp $deployment-solace-$i:/root/logs-$i.tar.gz ~; done

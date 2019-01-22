@@ -1,0 +1,6 @@
+deployment=`helm list | grep DEPLOYED | awk '{print $1}'`
+helm delete $deployment
+kubectl delete pvc data-$deployment-solace-0
+kubectl delete pvc data-$deployment-solace-1
+kubectl delete pvc data-$deployment-solace-2
+
